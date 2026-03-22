@@ -1,5 +1,5 @@
 ---
-name: Architect
+name: .NET Architect
 description: Designs data models, API contracts, and database schemas for .NET/SQL applications.
 model: Claude Sonnet 4.6 (copilot)
 tools: ['vscode', 'execute', 'read', 'agent', 'io.github.upstash/context7/*', 'edit', 'search', 'web', 'vscode/memory', 'todo']

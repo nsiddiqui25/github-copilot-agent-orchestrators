@@ -1,5 +1,5 @@
 ---
-name: Coder
+name: .NET Coder
 description: Writes .NET, EF Core, and SQL code following mandatory coding principles.
 model: GPT-5.3-Codex (copilot)
 tools: ['vscode', 'execute', 'read', 'io.github.upstash/context7/*', 'edit', 'search', 'vscode/memory', 'todo']

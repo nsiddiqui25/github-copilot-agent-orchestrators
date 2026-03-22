@@ -23,6 +23,13 @@ Run a quick triage first:
 - **Direct execution (skip Planner)** when the request is clear, low-risk, and narrowly scoped.
 - **Planner-first** when the request is ambiguous, architectural, cross-cutting, or high-risk.
 
+Before deciding, run a lightweight preflight check (max 3 files):
+- Read the nearest files tied to the request
+- Read dependency/config files only if the task may alter dependency or runtime behavior
+- Read app entrypoint/routing/wiring files only if the request suggests cross-cutting impact
+
+If preflight confirms clear acceptance criteria and no high-risk trigger, stay in Direct execution.
+
 Escalation triggers that require Planner:
 - Ambiguous requirements or multiple valid solution paths
 - Shared/cross-cutting files likely to overlap
@@ -30,7 +37,7 @@ Escalation triggers that require Planner:
 
 Escalation Gate (Required):
 - You MUST call Planner when any of the following is true:
-  - Estimated scope exceeds 4 files
+  - Estimated scope exceeds 6 files and the task is not strictly additive within one bounded feature area
   - High-risk architecture changes are involved (state management, core providers, routing strategy, auth, data/security, or shared cross-feature concerns)
   - Requirements are ambiguous
 - Exception: If changes are purely mechanical and low-risk (for example: rename-only, formatting-only, import cleanup), file count alone does not require Planner.

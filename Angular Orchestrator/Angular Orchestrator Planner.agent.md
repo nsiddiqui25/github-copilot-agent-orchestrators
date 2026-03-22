@@ -1,5 +1,5 @@
 ---
-name: Planner
+name: Angular Planner
 description: Creates comprehensive implementation plans for Angular projects by researching the codebase, consulting documentation, and identifying edge cases.
 model: Claude Sonnet 4.6 (copilot)
 tools: ['vscode', 'read', 'search', 'io.github.upstash/context7/*', 'vscode/memory']

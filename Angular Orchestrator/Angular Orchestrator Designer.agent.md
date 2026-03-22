@@ -1,5 +1,5 @@
 ---
-name: Designer
+name: Angular Designer
 description: Handles all UI/UX design for Angular applications.
 model: Claude Sonnet 4.6 (copilot)
 tools: ['vscode', 'execute', 'read', 'agent', 'io.github.upstash/context7/*', 'edit', 'search', 'web', 'vscode/memory', 'todo']

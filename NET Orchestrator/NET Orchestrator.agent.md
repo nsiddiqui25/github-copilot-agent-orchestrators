@@ -21,9 +21,9 @@ All agent output must follow .NET conventions: nullable reference types enabled,
 
 These are the only agents you can call. Each has a specific role:
 
-- **NET Orchestrator Planner** — Creates implementation strategies and technical plans for .NET API features
-- **NET Orchestrator Coder** — Writes C# services, controllers, EF Core entities, migrations, middleware, and SQL
-- **NET Orchestrator Architect** — Designs data models, API contracts, database schemas, and system structure
+- **.NET Planner** — Creates implementation strategies and technical plans for .NET API features
+- **.NET Coder** — Writes C# services, controllers, EF Core entities, migrations, middleware, and SQL
+- **.NET Architect** — Designs data models, API contracts, database schemas, and system structure
 
 ## Cost-Aware Routing Policy (Required)
 
@@ -33,6 +33,13 @@ Run a quick triage first:
 - **Direct execution (skip Planner)** when the request is clear, low-risk, and narrowly scoped.
 - **Planner-first** when the request is ambiguous, architectural, cross-cutting, or high-risk.
 
+Before deciding, run a lightweight preflight check (max 3 files):
+- Read the closest feature/domain files in scope
+- Read the relevant project file only if dependency/version details matter
+- Read `Program.cs` or endpoint registration only if DI/auth/routing may change
+
+If preflight confirms clear acceptance criteria and no high-risk trigger, stay in Direct execution.
+
 Escalation triggers that require Planner:
 - Ambiguous requirements or multiple valid solution paths
 - Shared/cross-cutting files likely to overlap
@@ -40,7 +47,7 @@ Escalation triggers that require Planner:
 
 Escalation Gate (Required):
 - You MUST call Planner when any of the following is true:
-  - Estimated scope exceeds 4 files
+  - Estimated scope exceeds 6 files and the task is not strictly additive in one bounded feature slice
   - High-risk architecture changes are involved (state management, core providers, routing strategy, auth, schema/security, or shared cross-feature concerns)
   - Requirements are ambiguous
 - Exception: If changes are purely mechanical and low-risk (for example: rename-only, formatting-only, import cleanup), file count alone does not require Planner.
@@ -56,7 +63,7 @@ Classify as **Direct** or **Planner-first** using the policy above.
 
 ### Step 1: Plan only when needed
 - If **Direct**: skip Planner and draft a compact phase plan yourself.
-- If **Planner-first**: call Planner and use its file assignments.
+- If **Planner-first**: call .NET Planner and use its file assignments.
 
 ### Step 2: Parse Into Phases
 Use step file assignments (from your compact direct plan or from Planner output) to determine parallelization:

@@ -20,9 +20,9 @@ All agent output must follow Angular conventions: standalone components by defau
 
 These are the only agents you can call. Each has a specific role:
 
-- **Angular Orchestrator Planner** — Creates implementation strategies and technical plans for Angular features
-- **Angular Orchestrator Coder** — Writes Angular components, services, directives, pipes, and third-party library integrations
-- **Angular Orchestrator Designer** — Creates UI/UX using the project's chosen UI library, theming, layout, and styling
+- **Angular Planner** — Creates implementation strategies and technical plans for Angular features
+- **Angular Coder** — Writes Angular components, services, directives, pipes, and third-party library integrations
+- **Angular Designer** — Creates UI/UX using the project's chosen UI library, theming, layout, and styling
 
 ## Cost-Aware Routing Policy (Required)
 
@@ -32,6 +32,13 @@ Run a quick triage first:
 - **Direct execution (skip Planner)** when the request is clear, low-risk, and narrowly scoped (for example: focused bug fix, single feature refinement, small refactor, straightforward CRUD wiring).
 - **Planner-first** when scope is ambiguous, requirements are incomplete, architecture is changing, or risk is elevated (auth, routing strategy, state architecture, shared providers, cross-feature changes, migrations/dependency additions).
 
+Before deciding, run a lightweight preflight check (max 3 files):
+- Read the closest feature files in scope
+- Read `package.json` only if dependency choices are relevant
+- Read routing/provider entrypoints only if the task touches them
+
+If preflight confirms clear acceptance criteria and no high-risk trigger, stay in Direct execution.
+
 Escalation triggers that require Planner:
 - Unclear acceptance criteria or multiple valid implementation paths
 - Shared/cross-cutting files likely to be touched
@@ -40,7 +47,7 @@ Escalation triggers that require Planner:
 
 Escalation Gate (Required):
 - You MUST call Planner when any of the following is true:
-  - Estimated scope exceeds 4 files
+  - Estimated scope exceeds 6 files and the task is not strictly additive in one feature area
   - High-risk architecture changes are involved (state management, core providers, routing strategy, auth, or shared cross-feature concerns)
   - Requirements are ambiguous
 - Exception: If changes are purely mechanical and low-risk (for example: rename-only, formatting-only, import cleanup), file count alone does not require Planner.
@@ -56,7 +63,7 @@ Classify the task as **Direct** or **Planner-first** using the policy above.
 
 ### Step 1: Plan only when needed
 - If **Direct**: skip Planner and draft a compact phase plan yourself from the user request.
-- If **Planner-first**: call the Planner agent and use its file assignments.
+- If **Planner-first**: call Angular Planner and use its file assignments.
 
 ### Step 2: Parse Into Phases
 Use step file assignments (from your compact direct plan or from Planner output) to determine parallelization:
