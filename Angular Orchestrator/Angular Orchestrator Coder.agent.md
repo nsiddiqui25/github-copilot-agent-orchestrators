@@ -2,11 +2,11 @@
 name: Coder
 description: Writes Angular code following mandatory coding principles.
 model: GPT-5.3-Codex (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'io.github.upstash/context7/*', 'github/*', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+tools: ['vscode', 'execute', 'read', 'io.github.upstash/context7/*', 'edit', 'search', 'vscode/memory', 'todo']
 user-invocable: false
 ---
 
-ALWAYS use #context7 MCP Server to read relevant documentation for Angular, RxJS, and any UI libraries or third-party modules involved. Do this every time. Never assume that you know the answer as these things change frequently. Your training date is in the past so your knowledge is likely out of date, even if it is a technology you are familiar with.
+Use #context7 selectively for Angular, RxJS, and third-party libraries when APIs are version-sensitive, unfamiliar, uncertain, or critical to correctness. Skip documentation calls for routine local refactors and established project patterns already present in the codebase.
 
 ## Technology Stack
 

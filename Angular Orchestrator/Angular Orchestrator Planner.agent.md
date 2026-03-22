@@ -1,8 +1,8 @@
 ---
 name: Planner
 description: Creates comprehensive implementation plans for Angular projects by researching the codebase, consulting documentation, and identifying edge cases.
-model: Claude Opus 4.6 (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'io.github.upstash/context7/*', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+model: Claude Sonnet 4.6 (copilot)
+tools: ['vscode', 'read', 'search', 'io.github.upstash/context7/*', 'vscode/memory']
 user-invocable: false
 ---
 
@@ -29,7 +29,7 @@ Core Angular technologies (always applicable):
 ## Workflow
 
 1. **Research**: Search the codebase thoroughly. Read the relevant files. Find existing patterns — existing components, services, routing structure, theme configuration, UI library setup, `package.json` dependencies.
-2. **Verify**: Use #context7 and #fetch to check documentation for Angular and any third-party libraries involved. Don't assume — verify. APIs change between versions.
+2. **Verify selectively**: Use #context7 only when APIs are version-sensitive, uncertain, newly introduced, or critical to correctness. Do not force documentation lookups for routine, well-established project patterns.
 3. **Consider**: Identify edge cases, error states, responsive breakpoints, accessibility requirements, and implicit requirements the user didn't mention.
 4. **Plan**: Output WHAT needs to happen, not HOW to code it.
 
@@ -59,7 +59,7 @@ Core Angular technologies (always applicable):
 
 ## Rules
 
-- Never skip documentation checks for Angular APIs or third-party library components
+- Use documentation checks when uncertainty or version sensitivity exists
 - Consider what the user needs but didn't ask for (loading indicators, validation, responsive layout, empty states)
 - Note uncertainties — don't hide them
 - Match existing codebase patterns
