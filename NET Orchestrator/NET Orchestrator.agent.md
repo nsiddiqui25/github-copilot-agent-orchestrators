@@ -1,7 +1,7 @@
 ---
 name: .NET Orchestrator
 description: .NET & SQL API Project Orchestrator
-model: Claude Sonnet 4.6 (copilot)
+model: Auto (copilot)
 tools: ['read/readFile', 'agent', 'vscode/memory']
 ---
 
