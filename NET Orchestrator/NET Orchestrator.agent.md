@@ -38,6 +38,13 @@ Escalation triggers that require Planner:
 - Shared/cross-cutting files likely to overlap
 - Schema/auth/security changes, migration strategy changes, or dependency strategy decisions
 
+Escalation Gate (Required):
+- You MUST call Planner when any of the following is true:
+  - Estimated scope exceeds 4 files
+  - High-risk architecture changes are involved (state management, core providers, routing strategy, auth, schema/security, or shared cross-feature concerns)
+  - Requirements are ambiguous
+- Exception: If changes are purely mechanical and low-risk (for example: rename-only, formatting-only, import cleanup), file count alone does not require Planner.
+
 If triage indicates direct execution, delegate straight to Coder/Architect with explicit file scope and skip plan generation.
 
 ## Execution Model
